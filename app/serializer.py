@@ -6,17 +6,20 @@ from app.book import Book
 
 
 class SerializerBehavior(ABC):
+
     @abstractmethod
     def serialize_book(self, book: Book) -> None:
         raise NotImplementedError
 
 
 class JsonSerializer(SerializerBehavior):
+
     def serialize_book(self, book: Book) -> str:
         return json.dumps({"title": book.title, "content": book.content})
 
 
 class XMLSerializer(SerializerBehavior):
+
     def serialize_book(self, book: Book) -> str:
         root = ElementTree.Element("book")
         title = ElementTree.SubElement(root, "title")
